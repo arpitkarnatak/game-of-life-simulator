@@ -1,0 +1,31 @@
+.grid-row {
+  display: flex;
+  gap: 1px;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.grid-cell {
+  height: 12px;
+  width: 12px;
+  border: 0.1px solid rgb(255,255,255,0.2);
+  background-color: none;
+}
+
+.alive-cell {
+  background-color: #736CED;
+}
+
+dead-cell {
+    background-color: none;
+}
+
+.just-died-cell {
+    background-color: #9F9FED;
+}
