@@ -4,10 +4,9 @@ import useGame, { CellState } from "./useGame";
 
 export default function GameBoard() {
   const [intervalPeriod, setIntervalPeriod] = useState(100);
-  const { board, modifyIndex, startSimulation, generation } = useGame(
-    50,
-    intervalPeriod
-  );
+
+  const { simulationRunning, board, modifyIndex, startSimulation, generation, stopSimulation, resetSimulation } =
+    useGame(100, intervalPeriod);
 
   function getCellState(state: CellState) {
     switch (state) {
@@ -22,9 +21,12 @@ export default function GameBoard() {
 
   return (
     <div>
-      <button onClick={startSimulation}>Start</button>
+      <button onClick={startSimulation} disabled={simulationRunning}>Start</button>
+      <button onClick={stopSimulation} disabled={!simulationRunning}>Pause</button>
+      <button onClick={resetSimulation}>Reset</button>
       <h2>Generation: {generation}</h2>
 
+      <label>Time for next generation</label>
       <input
         type="range"
         min={100}

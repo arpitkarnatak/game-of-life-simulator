@@ -89,8 +89,19 @@ export default function useGame(boardSize: number, intervalPeriod: number) {
   return {
     board,
     modifyIndex,
+    simulationRunning: simulationStarted,
     startSimulation: () => setSimulationStarted(true),
     stopSimulation: () => setSimulationStarted(false),
+    resetSimulation: () => {
+      setSimulationStarted(false),
+        clearInterval(intervalId),
+        setGeneration(0),
+        setBoard(
+          Array.from({ length: boardSize }, () =>
+            Array(boardSize).fill(CellState.DEAD)
+          )
+        );
+    },
     generation,
   };
 }
