@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./styles.css";
 import useGame, { CellState } from "./useGame";
 
@@ -28,7 +28,7 @@ export default function GameBoard() {
       <input
         type="range"
         min={100}
-        max={5000}
+        max={1000}
         onChange={(e) => setIntervalPeriod(e.target.valueAsNumber)}
       />
       <div className="grid">
