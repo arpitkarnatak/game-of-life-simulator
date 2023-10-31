@@ -1,3 +1,7 @@
+.board-main {
+  position: relative;
+  width: 100%;
+}
 .grid-row {
   display: flex;
   gap: 1px;
@@ -14,42 +18,90 @@
 .grid-cell {
   height: 12px;
   width: 12px;
-  border: 0.1px solid rgb(255,255,255,0.2);
+  border: 0.1px solid rgb(255, 255, 255, 0.2);
   background-color: none;
 }
 
 .alive-cell {
-  background-color: #736CED;
+  background-color: #736ced;
 }
 
 dead-cell {
-    background-color: none;
+  background-color: none;
 }
 
 .just-died-cell {
-    background-color: #9F9FED;
-    opacity: 0.5;
+  background-color: #9f9fed;
+  opacity: 0.5;
 }
 
 .shape-selector-main {
-    display: flex;
-    gap: 12px;
-    border: 1px solid white;
-    padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid white;
+  padding: 8px 16px;
+  position: absolute;
+  background-color: #242424;
+}
+
+.shape-selector-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid white;
+}
+
+.hide-content {
+  display: none;
+  width: fit-content;
+}
+
+.shape-selector-header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.shape-family {
+  padding: 16px 8px;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.shape-family-shapes {
+  display: flex;
+  gap: 12px;
+  padding: 4px 0;
+  flex-wrap: wrap;
 }
 
 .shape-button {
-    border: 1px solid white;
-    padding: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border: 1px solid white;
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shape-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
 }
 
 .selected-shape-button {
-    border: 4px double white;
-    padding: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border: 4px double white;
+  pointer-events: none;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.beta-version {
+  pointer-events: none;
+  background: rgba(255, 0, 0, 0.3);
 }

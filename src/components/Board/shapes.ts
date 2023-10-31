@@ -3,17 +3,20 @@ export class Shape {
   readonly coordinates;
   readonly width;
   readonly height;
+  readonly beta;
 
   constructor(
     name: string,
     coordinates: [number, number][],
     width: number,
-    height: number
+    height: number,
+    beta?: boolean
   ) {
     this.name = name;
     this.coordinates = coordinates;
     this.width = width;
     this.height = height;
+    this.beta = beta;
   }
 }
 
@@ -87,7 +90,8 @@ export const Pulsar = new Shape(
     [14, 12],
   ],
   15,
-  25
+  15,
+  true
 );
 
 export const Point = new Shape("Point", [[0, 0]], 1, 1);
@@ -122,7 +126,8 @@ export const MiddleweightSpaceship = new Shape(
     [4, 3],
   ],
   6,
-  5
+  5,
+  true
 );
 
 export const HeavyweightSpaceship = new Shape(
@@ -146,25 +151,118 @@ export const HeavyweightSpaceship = new Shape(
     [4, 5],
   ],
   8,
-  5
+  5,
+  true
 );
 
 export const Pentadecathlon = new Shape(
-  "Pentadecathlon",
+  "Penta-decathlon",
   [
-    [1, 0],
-    [2, 0],
-    [3, 0],
-    [3, 1],
-    [4, 1],
-    [5, 1],
-    [6, 1],
-    [7, 1],
-    [7, 0],
-    [8, 0],
-    [9, 0],
-    [10, 0],
+    [4, 5],
+    [4, 6],
+    [3, 7],
+    [5, 7],
+    [4, 8],
+    [4, 9],
+    [4, 10],
+    [4, 11],
+    [3, 12],
+    [5, 12],
+    [4, 13],
+    [4, 14],
   ],
-  11,
-  2
+  18,
+  9
+);
+
+export const Beehive = new Shape(
+  "Beehive",
+  [
+    [1, 2],
+    [1, 3],
+    [2, 1],
+    [2, 4],
+    [3, 2],
+    [3, 3],
+  ],
+  5,
+  5
+);
+
+export const Loaf = new Shape(
+  "Loaf",
+  [
+    [1, 2],
+    [1, 3],
+    [2, 1],
+    [2, 4],
+    [3, 2],
+    [3, 4],
+    [4, 3],
+  ],
+  5,
+  5
+);
+
+export const Boat = new Shape(
+  "Boat",
+  [
+    [1, 1],
+    [1, 2],
+    [2, 1],
+    [2, 3],
+    [3, 2],
+  ],
+  4,
+  4
+);
+export const Tub = new Shape(
+  "Tub",
+  [
+    [1, 2],
+    [2, 1],
+    [2, 3],
+    [3, 2],
+  ],
+  4,
+  4
+);
+
+export const Beacon = new Shape(
+  "Beacon",
+  [
+    [1, 1],
+    [1, 2],
+    [2, 1],
+    [3, 4],
+    [4, 3],
+    [4, 4],
+  ],
+  5,
+  5
+);
+
+export const Toad = new Shape(
+  "Toad",
+  [
+    [2, 2],
+    [2, 3],
+    [2, 4],
+    [3, 1],
+    [3, 2],
+    [3, 3],
+  ],
+  5,
+  5
+);
+
+export const Blinker = new Shape(
+  "Blinker",
+  [
+    [2, 1],
+    [2, 2],
+    [2, 3],
+  ],
+  5,
+  5
 );

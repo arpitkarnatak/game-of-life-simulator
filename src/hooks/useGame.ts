@@ -7,9 +7,9 @@ export enum CellState {
   DEAD,
 }
 
-export default function useGame(boardSize: number, intervalPeriod: number) {
+export default function useGame(intervalPeriod: number) {
   let intervalId: number;
-  const { currentShape } = useContext(GlobalContext);
+  const { currentShape, boardSize } = useContext(GlobalContext);
   const [board, setBoard] = useState<CellState[][]>(
     Array.from({ length: boardSize }, () =>
       Array(boardSize).fill(CellState.DEAD)
@@ -20,11 +20,11 @@ export default function useGame(boardSize: number, intervalPeriod: number) {
   const [generation, setGeneration] = useState(0);
 
   function modifyIndex(rowIndex: number, colIndex: number) {
-    console.log(rowIndex, currentShape.height, currentShape.width);
     if (
-      rowIndex + currentShape.height <= 100 &&
-      colIndex + currentShape.width <= 100
+      rowIndex + currentShape.height <= boardSize &&
+      colIndex + currentShape.width <= boardSize
     ) {
+      console.log(rowIndex, colIndex);
       setBoard((prev) =>
         prev.map((row, rowIdx) =>
           row.map((cell, colIdx) => {
@@ -87,12 +87,12 @@ export default function useGame(boardSize: number, intervalPeriod: number) {
       });
       setGeneration((prev) => prev + 1);
     },
-    [boardSize]
+    [boardSize, board, intervalPeriod, generation]
   );
 
   useEffect(() => {
     if (simulationStarted) {
-      intervalId = setInterval(simulate, intervalPeriod);
+      intervalId = setInterval(simulate, intervalPeriod - 20);
     }
     return () => clearInterval(intervalId);
   }, [simulationStarted, intervalPeriod]);

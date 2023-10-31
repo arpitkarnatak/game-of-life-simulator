@@ -14,7 +14,7 @@ export default function Board() {
     generation,
     stopSimulation,
     resetSimulation,
-  } = useGame(100, intervalPeriod);
+  } = useGame(intervalPeriod);
 
   function getCellState(state: CellState) {
     switch (state) {
@@ -27,7 +27,11 @@ export default function Board() {
     }
   }
   return (
-    <div>
+    <div className="board-main">
+      <div style={{position: 'relative', width: '100%'}}>
+        <ShapeSelector />
+      </div>
+
       <button onClick={startSimulation} disabled={simulationRunning}>
         Start
       </button>
@@ -44,7 +48,6 @@ export default function Board() {
         max={1000}
         onChange={(e) => setIntervalPeriod(e.target.valueAsNumber)}
       />
-      <ShapeSelector />
       <div className="grid">
         {board.map((row, rowIndex) => (
           <div key={rowIndex} className="grid-row">
