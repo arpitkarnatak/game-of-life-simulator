@@ -28,4 +28,28 @@ dead-cell {
 
 .just-died-cell {
     background-color: #9F9FED;
+    opacity: 0.5;
+}
+
+.shape-selector-main {
+    display: flex;
+    gap: 12px;
+    border: 1px solid white;
+    padding: 8px 16px;
+}
+
+.shape-button {
+    border: 1px solid white;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selected-shape-button {
+    border: 4px double white;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

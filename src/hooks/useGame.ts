@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 export enum CellState {
   ALIVE,
@@ -8,6 +9,7 @@ export enum CellState {
 
 export default function useGame(boardSize: number, intervalPeriod: number) {
   let intervalId: number;
+  const { currentShape } = useContext(GlobalContext);
   const [board, setBoard] = useState<CellState[][]>(
     Array.from({ length: boardSize }, () =>
       Array(boardSize).fill(CellState.DEAD)
@@ -18,17 +20,26 @@ export default function useGame(boardSize: number, intervalPeriod: number) {
   const [generation, setGeneration] = useState(0);
 
   function modifyIndex(rowIndex: number, colIndex: number) {
-    setBoard((prev) =>
-      prev.map((row, rowIdx) =>
-        row.map((cell, colIdx) =>
-          rowIndex === rowIdx && colIdx === colIndex
-            ? cell === CellState.ALIVE
-              ? CellState.DEAD
-              : CellState.ALIVE
-            : cell
+    console.log(rowIndex, currentShape.height, currentShape.width);
+    if (
+      rowIndex + currentShape.height <= 100 &&
+      colIndex + currentShape.width <= 100
+    ) {
+      setBoard((prev) =>
+        prev.map((row, rowIdx) =>
+          row.map((cell, colIdx) => {
+            for (const [dx, dy] of currentShape.coordinates) {
+              const x = rowIndex + dx;
+              const y = colIndex + dy;
+              if (x < 100 && y < 100 && rowIdx === x && colIdx === y) {
+                return CellState.ALIVE;
+              }
+            }
+            return cell;
+          })
         )
-      )
-    );
+      );
+    }
   }
 
   const simulate = useCallback(
