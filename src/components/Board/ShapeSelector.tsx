@@ -6,7 +6,9 @@ import {
   Blinker,
   Boat,
   Glider,
+  GosperGliderGun,
   HeavyweightSpaceship,
+  Replicator,
   LightweightSpaceship,
   Loaf,
   MiddleweightSpaceship,
@@ -27,6 +29,7 @@ const shapesDirectory = {
     HeavyweightSpaceship,
   ],
   Oscillators: [Blinker, Toad, Beacon, Pentadecathlon, Pulsar],
+  Misc: [GosperGliderGun, Replicator],
 };
 
 export default function ShapeSelector() {
