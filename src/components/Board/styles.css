@@ -2,6 +2,20 @@
   position: relative;
   width: 100%;
 }
+
+.animation-control-bar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 16px;
+  border: 2px dotted white;
+  background-color: #242424;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .grid-row {
   display: flex;
   gap: 1px;
@@ -36,12 +50,13 @@ dead-cell {
 }
 
 .shape-selector-main {
+  position: fixed;
+  top: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   border: 1px solid white;
   padding: 8px 16px;
-  position: absolute;
   background-color: #242424;
 }
 

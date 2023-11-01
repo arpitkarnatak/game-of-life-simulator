@@ -118,6 +118,7 @@ export default function useGame(intervalPeriod: number) {
           )
         );
     },
+    forwardStep: simulate,
     generation,
   };
 }

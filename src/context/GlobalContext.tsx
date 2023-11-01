@@ -22,7 +22,7 @@ export const GlobalContext = createContext<IGlobalContext>({
 });
 export default function GlobalContextProvider({ children }: PropsWithChildren) {
   const [currentShape, setCurrentShape] = useState<Shape>(Point);
-  const [boardSize, setBoardSize] = useState(50);
+  const [boardSize, setBoardSize] = useState(75);
   return (
     <GlobalContext.Provider
       value={{

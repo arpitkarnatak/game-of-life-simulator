@@ -2,6 +2,13 @@ import { useState } from "react";
 import "./styles.css";
 import useGame, { CellState } from "../../hooks/useGame";
 import ShapeSelector from "./ShapeSelector";
+import {
+  faForwardStep,
+  faPause,
+  faPlay,
+  faSquare,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Board() {
   const [intervalPeriod, setIntervalPeriod] = useState(100);
@@ -9,6 +16,7 @@ export default function Board() {
   const {
     simulationRunning,
     board,
+    forwardStep,
     modifyIndex,
     startSimulation,
     generation,
@@ -28,18 +36,30 @@ export default function Board() {
   }
   return (
     <div className="board-main">
-      <div style={{position: 'relative', width: '100%'}}>
+      <div style={{ position: "relative", width: "100%" }}>
         <ShapeSelector />
       </div>
 
-      <button onClick={startSimulation} disabled={simulationRunning}>
-        Start
-      </button>
-      <button onClick={stopSimulation} disabled={!simulationRunning}>
-        Pause
-      </button>
-      <button onClick={resetSimulation}>Reset</button>
       <h2>Generation: {generation}</h2>
+
+      <div style={{ position: "relative", width: "100%" }}>
+        <div className="animation-control-bar">
+          <button onClick={resetSimulation}>
+            <FontAwesomeIcon icon={faSquare} color="red" />
+          </button>
+          <button
+            onClick={simulationRunning ? stopSimulation : startSimulation}
+          >
+            <FontAwesomeIcon
+              icon={simulationRunning ? faPause : faPlay}
+              color={simulationRunning ? "white" : "rgb(0,255,0)"}
+            />
+          </button>
+          <button onClick={forwardStep}>
+            <FontAwesomeIcon icon={faForwardStep} color="skyblue" />
+          </button>
+        </div>
+      </div>
 
       <label>Time for next generation</label>
       <input
