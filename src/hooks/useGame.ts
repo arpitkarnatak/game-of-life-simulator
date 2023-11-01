@@ -31,7 +31,12 @@ export default function useGame(intervalPeriod: number) {
             for (const [dx, dy] of currentShape.coordinates) {
               const x = rowIndex + dx;
               const y = colIndex + dy;
-              if (x < 100 && y < 100 && rowIdx === x && colIdx === y) {
+              if (
+                x < boardSize &&
+                y < boardSize &&
+                rowIdx === x &&
+                colIdx === y
+              ) {
                 return CellState.ALIVE;
               }
             }
@@ -87,7 +92,7 @@ export default function useGame(intervalPeriod: number) {
       });
       setGeneration((prev) => prev + 1);
     },
-    [boardSize, board, intervalPeriod, generation]
+    [boardSize]
   );
 
   useEffect(() => {

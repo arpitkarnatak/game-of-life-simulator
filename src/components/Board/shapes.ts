@@ -70,6 +70,10 @@ export const Pulsar = new Shape(
     [9, 10],
     [9, 11],
     [9, 12],
+    [10, 2],
+    [10, 7],
+    [10, 9],
+    [10, 14],
     [11, 2],
     [11, 7],
     [11, 9],
@@ -78,10 +82,6 @@ export const Pulsar = new Shape(
     [12, 7],
     [12, 9],
     [12, 14],
-    [13, 2],
-    [13, 7],
-    [13, 9],
-    [13, 14],
     [14, 4],
     [14, 5],
     [14, 6],
@@ -90,8 +90,7 @@ export const Pulsar = new Shape(
     [14, 12],
   ],
   15,
-  15,
-  true
+  15
 );
 
 export const Point = new Shape("Point", [[0, 0]], 1, 1);
@@ -110,28 +109,26 @@ export const Glider = new Shape(
 );
 
 export const MiddleweightSpaceship = new Shape(
-  "Middleweight Spaceship",
+  "MWSS",
   [
+    [0, 1],
     [0, 2],
     [0, 3],
     [0, 4],
     [0, 5],
-    [1, 1],
+    [1, 0],
     [1, 5],
     [2, 5],
-    [3, 0],
     [3, 4],
     [4, 1],
     [4, 2],
-    [4, 3],
   ],
   6,
-  5,
-  true
+  5
 );
 
 export const HeavyweightSpaceship = new Shape(
-  "Heavyweight Spaceship",
+  "HWSS",
   [
     [0, 2],
     [0, 3],
@@ -142,17 +139,13 @@ export const HeavyweightSpaceship = new Shape(
     [1, 1],
     [1, 7],
     [2, 7],
-    [3, 0],
+    [3, 1],
     [3, 6],
-    [4, 1],
-    [4, 2],
     [4, 3],
     [4, 4],
-    [4, 5],
   ],
   8,
-  5,
-  true
+  5
 );
 
 export const Pentadecathlon = new Shape(
