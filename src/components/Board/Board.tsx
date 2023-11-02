@@ -13,6 +13,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createPortal } from "react-dom";
 import HelpModal from "./HelpModal";
+import useBoardCanvas from "../../hooks/useBoardCanvas";
 
 export default function Board() {
   const [intervalPeriod, setIntervalPeriod] = useState(100);
@@ -42,16 +43,8 @@ export default function Board() {
     return new Blob([data], { type: "text/plain" });
   }, [board]);
 
-  function getCellState(state: CellState) {
-    switch (state) {
-      case CellState.ALIVE:
-        return "alive-cell";
-      case CellState.JUST_DIED:
-        return "just-died-cell";
-      default:
-        return "dead-cell";
-    }
-  }
+  const canvasRef = useBoardCanvas(board);
+
   return (
     <div className="board-main">
       {showHelpModal &&
@@ -67,18 +60,21 @@ export default function Board() {
         max={1000}
         onChange={(e) => setIntervalPeriod(e.target.valueAsNumber)}
       />
-      <div className="grid">
-        {board.map((row, rowIndex) => (
-          <div key={rowIndex} className="grid-row">
-            {row.map((col, colIndex) => (
-              <div
-                key={`${rowIndex}-${colIndex}`}
-                className={`grid-cell ${getCellState(col)}`}
-                onClick={() => modifyIndex(rowIndex, colIndex)}
-              ></div>
-            ))}
-          </div>
-        ))}
+      <div>
+        <canvas
+          ref={canvasRef}
+          onClick={(e) => {
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const cellSize = 12;
+            const rowIndex = Math.floor(y / cellSize);
+            const colIndex = Math.floor(x / cellSize);
+            modifyIndex(rowIndex, colIndex);
+          }}
+        ></canvas>
       </div>
 
       <div className="animation-control-bar">

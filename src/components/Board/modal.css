@@ -42,6 +42,11 @@
     width: fit-content;
 }
 
+.menu-tab:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
 .active-tab {
     outline: 1px solid white;
     background-color: black;
