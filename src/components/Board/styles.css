@@ -4,8 +4,8 @@
 }
 
 .animation-control-bar {
-  position: fixed;
-  top: 20px;
+  position: sticky;
+  bottom: 0;
   right: 20px;
   padding: 16px;
   border: 2px dotted white;
@@ -49,9 +49,10 @@ dead-cell {
   opacity: 0.5;
 }
 
-.shape-selector-main {
+.shape-selector-main-open {
   position: fixed;
-  top: 20px;
+  top: 0%;
+  left: 0%;
   display: flex;
   flex-direction: column;
   gap: 12px;

@@ -18,6 +18,8 @@ import {
   Tub,
 } from "./shapes";
 import { GlobalContext } from "../../context/GlobalContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose, faPencil } from "@fortawesome/free-solid-svg-icons";
 
 const shapesDirectory = {
   "Still Lifes": [Point, Beehive, Loaf, Boat, Tub],
@@ -36,13 +38,13 @@ export default function ShapeSelector() {
 
   const [openShapeSelector, setOpenShapeSelector] = useState(false);
   return (
-    <div className="shape-selector-main">
+    <div className={`shape-selector-main ${openShapeSelector && 'shape-selector-main-open'}`}>
       <div className="shape-selector-header">
         <button
           className="shape-selector-close"
           onClick={() => setOpenShapeSelector((prev) => !prev)}
         >
-          {openShapeSelector ? "x" : currentShape.name}
+          {openShapeSelector ? <FontAwesomeIcon icon={faClose} /> : <FontAwesomeIcon icon={faPencil} />}
         </button>
       </div>
 

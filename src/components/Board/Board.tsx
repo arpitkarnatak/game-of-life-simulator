@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import "./styles.css";
 import useGame, { CellState } from "../../hooks/useGame";
 import ShapeSelector from "./ShapeSelector";
@@ -7,6 +7,8 @@ import {
   faPause,
   faPlay,
   faSquare,
+  faDownload,
+  faInfo,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -24,6 +26,19 @@ export default function Board() {
     resetSimulation,
   } = useGame(intervalPeriod);
 
+  const getFileFromBoard = useCallback(() => {
+    const data = board
+      .map((row) =>
+        row.reduce(
+          (rowString, cell) =>
+            rowString + (cell === CellState.ALIVE ? "O" : "."),
+          ""
+        )
+      )
+      .join("\n");
+    return new Blob([data], { type: "text/plain" });
+  }, [board]);
+
   function getCellState(state: CellState) {
     switch (state) {
       case CellState.ALIVE:
@@ -36,30 +51,7 @@ export default function Board() {
   }
   return (
     <div className="board-main">
-      <div style={{ position: "relative", width: "100%" }}>
-        <ShapeSelector />
-      </div>
-
       <h2>Generation: {generation}</h2>
-
-      <div style={{ position: "relative", width: "100%" }}>
-        <div className="animation-control-bar">
-          <button onClick={resetSimulation}>
-            <FontAwesomeIcon icon={faSquare} color="red" />
-          </button>
-          <button
-            onClick={simulationRunning ? stopSimulation : startSimulation}
-          >
-            <FontAwesomeIcon
-              icon={simulationRunning ? faPause : faPlay}
-              color={simulationRunning ? "white" : "rgb(0,255,0)"}
-            />
-          </button>
-          <button onClick={forwardStep}>
-            <FontAwesomeIcon icon={faForwardStep} color="skyblue" />
-          </button>
-        </div>
-      </div>
 
       <label>Time for next generation</label>
       <input
@@ -80,6 +72,35 @@ export default function Board() {
             ))}
           </div>
         ))}
+      </div>
+
+      <div className="animation-control-bar">
+        <button onClick={resetSimulation}>
+          <FontAwesomeIcon icon={faSquare} color="red" />
+        </button>
+        <button onClick={simulationRunning ? stopSimulation : startSimulation}>
+          <FontAwesomeIcon
+            icon={simulationRunning ? faPause : faPlay}
+            color={simulationRunning ? "white" : "rgb(0,255,0)"}
+          />
+        </button>
+        <button onClick={forwardStep}>
+          <FontAwesomeIcon icon={faForwardStep} color="skyblue" />
+        </button>
+        <button>
+          <a
+            download="configuration.txt"
+            target="_blank"
+            rel="noreferrer"
+            href={URL.createObjectURL(getFileFromBoard())}
+          >
+            <FontAwesomeIcon icon={faDownload} color="white" />
+          </a>
+        </button>
+        <button>
+          <FontAwesomeIcon icon={faInfo} color="white" />
+        </button>
+        <ShapeSelector />
       </div>
     </div>
   );
