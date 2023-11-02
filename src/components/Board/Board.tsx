@@ -8,12 +8,15 @@ import {
   faPlay,
   faSquare,
   faDownload,
-  faInfo,
+  faCircleInfo,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { createPortal } from "react-dom";
+import HelpModal from "./HelpModal";
 
 export default function Board() {
   const [intervalPeriod, setIntervalPeriod] = useState(100);
+  const [showHelpModal, setshowHelpModal] = useState(false);
 
   const {
     simulationRunning,
@@ -51,8 +54,12 @@ export default function Board() {
   }
   return (
     <div className="board-main">
+      {showHelpModal &&
+        createPortal(
+          <HelpModal onClose={() => setshowHelpModal(false)} />,
+          document.getElementById("modal-root") ?? document.body
+        )}
       <h2>Generation: {generation}</h2>
-
       <label>Time for next generation</label>
       <input
         type="range"
@@ -75,6 +82,7 @@ export default function Board() {
       </div>
 
       <div className="animation-control-bar">
+        <ShapeSelector />
         <button onClick={resetSimulation}>
           <FontAwesomeIcon icon={faSquare} color="red" />
         </button>
@@ -87,20 +95,18 @@ export default function Board() {
         <button onClick={forwardStep}>
           <FontAwesomeIcon icon={faForwardStep} color="skyblue" />
         </button>
-        <button>
-          <a
-            download="configuration.txt"
-            target="_blank"
-            rel="noreferrer"
-            href={URL.createObjectURL(getFileFromBoard())}
-          >
-            <FontAwesomeIcon icon={faDownload} color="white" />
-          </a>
+        <a
+          className="download-btn"
+          download={`configuration-${new Date().getTime()}.txt`}
+          target="_blank"
+          rel="noreferrer"
+          href={URL.createObjectURL(getFileFromBoard())}
+        >
+          <FontAwesomeIcon icon={faDownload} color="white" />
+        </a>
+        <button onClick={() => setshowHelpModal(true)}>
+          <FontAwesomeIcon icon={faCircleInfo} color="white" />
         </button>
-        <button>
-          <FontAwesomeIcon icon={faInfo} color="white" />
-        </button>
-        <ShapeSelector />
       </div>
     </div>
   );

@@ -24,7 +24,6 @@ export default function useGame(intervalPeriod: number) {
       rowIndex + currentShape.height <= boardSize &&
       colIndex + currentShape.width <= boardSize
     ) {
-      console.log(rowIndex, colIndex);
       setBoard((prev) =>
         prev.map((row, rowIdx) =>
           row.map((cell, colIdx) => {
