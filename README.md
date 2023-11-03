@@ -20,6 +20,7 @@ The rules of the game are simple and can be summarized as follows:
 
 ## Features
 
+### Animation Controls
 The simulator provides a variety of features that allow users to interact with the Game of Life in real-time:
 
 - **Play/Pause**: Start or pause the simulation at any time to observe the patterns.
